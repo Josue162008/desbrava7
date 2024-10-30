@@ -10,13 +10,9 @@ button{
     border-radius: 100px;
     border-style: none;
 }
-.container-login{
+.container-form{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    margin-top: 0%;   
-}
-#dark-mode{
-    margin: 20px;
 }

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desbrava7</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="icon" href="src/img/f1df3925ac598980d0110515e4639fd7-removebg-preview.png">
+    <script src="index.js"></script>
+</head>
+<body>
+    <script type="module" src="modules/senha.js"></script>
+    <div class="container-login">
+        <img src="src/img/f1df3925ac598980d0110515e4639fd7-removebg-preview.png" height="190px">
+        <h1>Olá Desbravador(a)!</h1>
+        <label for="">União</label>
+        <select name="" id="uniao-clube">
+            <option value="0">Escolher União</option>
+            <option value="UCB">União Central Brasileira</option>
+            <option value="UCoB">União Centro-Oeste Brasileira</option>
+            <option value="ULB">União Leste Brasileira</option>
+            <option value="UNB">União Norte Brasileira</option>
+            <option value="UNEB">União Nordeste Brasileira</option>
+            <option value="UNoB">União Noroeste Brasileira</option>
+            <option value="USB">União Sul Brasileira</option>
+            <option value="USeB">União Sudoeste Brasileira</option>
+        </select>
+        <br>
+        <label for="">Associação</label><input type="text" required id="associacao-clube"><br>
+        <label for="">Região</label><input type="text" required id="regiao-clube"><br>
+        <label for="">Nome do clube</label><input type="text" required id="clube-clube"><br>
+        <button type="submit" onclick="clube()">Cadastrar Clube</button>
+    </div>
+    <br>
+    <div class="container-adicionais">
+        <button id="dark-mode" onclick="darkMode()">🌙 Dark Mode</button>
+        <br>
+        <button id="login" onclick="login()">Já tem um clube?</button>
+    </div>
+</body>
+</html>
