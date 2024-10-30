@@ -1,10 +1,9 @@
-function login(){
-    var nome = document.querySelector('#nome').value;
-    var senha = document.querySelector("#senha").value;
-
-    if(nome === "admin" && senha === "desbravador123"){
-        window.location = "public/src/admin.html"
+function darkMode(){
+    if(document.body.style.backgroundColor != 'black'){
+        document.body.style.backgroundColor = 'black'
+        document.body.style.color = 'white'
     }else{
-        window.location = 'public/src/index.html'
+        document.body.style.backgroundColor = 'white'
+        document.body.style.color = 'black'
     }
 }
