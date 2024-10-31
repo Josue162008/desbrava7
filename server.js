@@ -4,7 +4,6 @@ const { parentPort } = require('worker_threads');
 const app = express();
 const PORT = 3001;
 const http = require('http');
-const { IOERR } = require('sqlite3');
 const server = new http.createServer(app);
 
 app.get('/cadastro-login', (req, res)=>{
