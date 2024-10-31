@@ -30,7 +30,7 @@ app.get('/app-js', (req, res)=>{
     res.sendFile(path.join(__dirname, 'src', 'js', 'app.js'));
 });
 app.get('/database-dados', (req, res)=>{
-    res.sendFile(path.join(__dirname, 'json', 'dados.js'));
+    res.sendFile(path.join(__dirname, 'json', 'dados.json'));
 });
 // -----------------------IMAGENS-----------------------------
 app.get('/logo', (req, res)=>{

@@ -28,6 +28,7 @@ function clube(){
     const associacao_clube = document.getElementById('associacao-clube').value;
     const regiao_clube = document.getElementById('regiao-clube').value;
     const clube = document.getElementById('clube-clube').value;
+    const database_dados = 'json/dados.json';
 
     function gerarSenhaAleatoria(tamanho) {
         const caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
@@ -67,8 +68,7 @@ function clube(){
             JSON.stringify(localStorage.setItem('possui', true));
             JSON.stringify(localStorage.setItem('senha_diretor', senhaGerada));
             JSON.stringify(localStorage.setItem('click', "true"));
-            alert(`Salve essa senha imediatamente: ${localStorage.getItem('senha_diretor')}`)
-            window.location = '/app'
+            alert(`Salve essa senha imediatamente: ${localStorage.getItem('senha_diretor')}`);
         }
     }
 }

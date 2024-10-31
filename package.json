@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -16,9 +17,11 @@
     "url": "https://github.com/Josue162008/desbrava7/issues"
   },
   "homepage": "https://github.com/Josue162008/desbrava7#readme",
-  "description": "",
   "dependencies": {
+    "body-parser": "^1.20.3",
     "express": "^4.21.1",
     "fs": "^0.0.1-security"
-  }
+  },
+  "devDependencies": {},
+  "description": ""
 }
