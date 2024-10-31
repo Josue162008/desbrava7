@@ -68,14 +68,14 @@ function clube(){
             JSON.stringify(localStorage.setItem('senha_diretor', senhaGerada));
             JSON.stringify(localStorage.setItem('click', "true"));
             alert(`Salve essa senha imediatamente: ${localStorage.getItem('senha_diretor')}`)
-            window.location = 'src/app.html'
+            window.location = '/app'
         }
     }
 }
 
 function login(){
     if(localStorage.getItem('possui', true)){
-        window.location = 'src/app.html'
+        window.location = '/app'
     }else{
         alert('Você não está em um clube!')
     }

@@ -4,17 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
-    <link rel="stylesheet" href="style.css">
-    <script src="js/app.js" defer></script>
-    <script src="/index.js" defer></script>
+    <link rel="stylesheet" href="/app-css">
+    <link rel="icon" href="/logo">
+    <script src="/app-js" defer></script>
+    <script src="/index-js" defer></script>
 </head>
 <body>
-    <script type="module" src="../modules/senha.js"></script>
+    <br>
     <div class="container-form">
+    <a href="/cadastro-login"><button>Voltar</button></a>
+    <img src="/logo" height="250px">
         <h1>Login Desbravador</h1>
         <label for="">Nome: </label><input type="text" id="nome"><br>
         <label for="">Senha: </label><input type="text" id="senha"><br>
-        <div id="senha-diretor"></div>
+        <div id="senha-diretor"></div><br>
         <button onclick="desbrava()">Login</button>
     </div>
 </body>
