@@ -5,6 +5,9 @@ const app = express();
 const PORT = 3001;
 const http = require('http');
 const server = new http.createServer(app);
+const fs = require('fs');
+const nodemailer = require('nodemailer')
+app.use(express.json());
 
 app.get('/cadastro-login', (req, res)=>{
     res.sendFile(path.join(__dirname, 'index.html'));
@@ -37,5 +40,52 @@ app.get('/logo', (req, res)=>{
     res.sendFile(path.join(__dirname,'src', 'img', 'f1df3925ac598980d0110515e4639fd7-removebg-preview.png'));
 });
 app.listen(PORT, () => {
-    console.log(`Servidor rodando em http://localhost:${PORT}/cadastro-login`);
+    console.log(`Servidor rodando em http://192.168.56.1:${PORT}/cadastro-login`);
+});
+// ------------------------------DATABASE-JSON---------------------
+app.post('/adicionar', (req, res) => {
+    const { uniao_clube, associacao_clube, regiao_clube, clube, senha_diretor, emailDiretor } = req.body;
+
+    fs.readFile('json/dados.json', 'utf-8', (err, data) => {
+        if (err) {
+            console.error(err);
+            return res.status(500).send('Erro ao ler o arquivo');
+        }
+
+        const dados = JSON.parse(data);
+
+        const clubeExistente = dados.find(item => 
+            item.clube.uniao_clube === uniao_clube &&
+            item.clube.associacao_clube === associacao_clube &&
+            item.clube.regiao_clube === regiao_clube &&
+            item.clube.nome_clube === clube &&
+            item.clube.emailDiretor === emailDiretor
+        );
+
+        if (clubeExistente) {
+            return res.status(400).send('Este clube já está cadastrado com as mesmas credenciais.');
+        }
+
+        const novoItem = {
+            "clube": {
+                "id_clube": "",
+                "uniao_clube": uniao_clube,
+                "associacao_clube": associacao_clube,
+                "regiao_clube": regiao_clube,
+                "nome_clube": clube,
+                "senha_diretor": senha_diretor,
+                "email_diretor": emailDiretor
+            }
+        };
+
+        dados.push(novoItem);
+
+        fs.writeFile('json/dados.json', JSON.stringify(dados, null, 4), (err) => {
+            if (err) {
+                console.error(err);
+                return res.status(500).send('Erro ao escrever no arquivo');
+            }
+            res.send('Clube cadastrado com sucesso!');
+        });
+    });
 });

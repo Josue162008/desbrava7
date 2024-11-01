@@ -28,7 +28,7 @@ function clube(){
     const associacao_clube = document.getElementById('associacao-clube').value;
     const regiao_clube = document.getElementById('regiao-clube').value;
     const clube = document.getElementById('clube-clube').value;
-    const database_dados = 'json/dados.json';
+    const emailDiretor = document.getElementById('email-diretor').value;
 
     function gerarSenhaAleatoria(tamanho) {
         const caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
@@ -50,16 +50,16 @@ function clube(){
     if(localStorage.getItem('click') === "true"){
         alert('Você já está contido em um clube!');
     }else{
-        if(uniao_clube === '0' && associacao_clube === '' && regiao_clube === '' && clube === ''){
-            alert('Preencha Tudo!')
-        }else if(uniao_clube === '0' && associacao_clube !== '' && regiao_clube !== '' && clube !== ''){
+        if(uniao_clube === '0'){
             alert('Defina uma União!');
-        }else if(uniao_clube !== '0' && associacao_clube == '' && regiao_clube != '' && clube !== ''){
+        }else if(associacao_clube === ''){
             alert('Defina a Associação de seu clube!');
-        }else if(uniao_clube !== '0' && associacao_clube !== '' && regiao_clube == '' && clube !== ''){
+        }else if(regiao_clube === ''){
             alert('Defina a Região de seu clube!')
-        }else if(uniao_clube !== '0' && associacao_clube !== '' && regiao_clube !== '' && clube == ''){
+        }else if(clube === ''){
             alert('Defina o seu clube!')
+        }else if(emailDiretor === ''){
+            alert('Insira o seu email de diretor!')
         }else if(uniao_clube !== '0' && associacao_clube !== '' && regiao_clube !== '' && clube !== ''){
             JSON.stringify(localStorage.setItem('uniao', uniao_clube));
             JSON.stringify(localStorage.setItem('associacao', associacao_clube));
@@ -69,6 +69,38 @@ function clube(){
             JSON.stringify(localStorage.setItem('senha_diretor', senhaGerada));
             JSON.stringify(localStorage.setItem('click', "true"));
             alert(`Salve essa senha imediatamente: ${localStorage.getItem('senha_diretor')}`);
+            JSON.stringify(localStorage.setItem('email_diretor', emailDiretor));
+
+            const dados = {
+                uniao_clube,
+                associacao_clube,
+                regiao_clube,
+                clube,
+                senha_diretor: senhaGerada,
+                email_diretor: emailDiretor
+            };
+
+            fetch('/adicionar', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(dados)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    return response.text().then(text => { throw new Error(text) });
+                }
+                return response.text();
+            })
+            .then(data => {
+                alert(data);
+            })
+            .catch(error => {
+                alert(error.message);
+            });
+        }else{
+            alert('Preencha Tudo!')
         }
     }
 }
