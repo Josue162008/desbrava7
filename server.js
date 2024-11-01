@@ -6,7 +6,6 @@ const PORT = 3001;
 const http = require('http');
 const server = new http.createServer(app);
 const fs = require('fs');
-const nodemailer = require('nodemailer')
 app.use(express.json());
 
 app.get('/cadastro-login', (req, res)=>{
