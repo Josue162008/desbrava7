@@ -44,7 +44,7 @@ app.listen(PORT, () => {
 });
 // ------------------------------DATABASE-JSON---------------------
 app.post('/adicionar', (req, res) => {
-    const { uniao_clube, associacao_clube, regiao_clube, clube, senha_diretor, emailDiretor } = req.body;
+    const { uniao_clube, associacao_clube, regiao_clube, clube, senha_diretor} = req.body;
 
     fs.readFile('json/dados.json', 'utf-8', (err, data) => {
         if (err) {
@@ -58,8 +58,7 @@ app.post('/adicionar', (req, res) => {
             item.clube.uniao_clube === uniao_clube &&
             item.clube.associacao_clube === associacao_clube &&
             item.clube.regiao_clube === regiao_clube &&
-            item.clube.nome_clube === clube &&
-            item.clube.emailDiretor === emailDiretor
+            item.clube.nome_clube === clube
         );
 
         if (clubeExistente) {
@@ -73,8 +72,7 @@ app.post('/adicionar', (req, res) => {
                 "associacao_clube": associacao_clube,
                 "regiao_clube": regiao_clube,
                 "nome_clube": clube,
-                "senha_diretor": senha_diretor,
-                "email_diretor": emailDiretor
+                "senha_diretor": senha_diretor
             }
         };
 
@@ -87,5 +85,26 @@ app.post('/adicionar', (req, res) => {
             }
             res.send('Clube cadastrado com sucesso!');
         });
+    });
+});
+
+app.post('/verificar-senha', (req, res) => {
+    const { senha_digitada } = req.body;
+
+    fs.readFile('json/dados.json', 'utf-8', (err, data) => {
+        if (err) {
+            console.error('Erro ao ler o arquivo:', err);
+            return res.status(500).send('Erro ao ler o arquivo');
+        }
+
+        const clubes = JSON.parse(data);
+
+        const clubeEncontrado = clubes.find(item => item.clube.senha_diretor === senha_digitada);
+
+        if (clubeEncontrado) {
+            return res.send('Senha correta!');
+        } else {
+            return res.status(400).send('Senha não inserida corretamente!');
+        }
     });
 });

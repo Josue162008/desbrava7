@@ -28,7 +28,6 @@ function clube(){
     const associacao_clube = document.getElementById('associacao-clube').value;
     const regiao_clube = document.getElementById('regiao-clube').value;
     const clube = document.getElementById('clube-clube').value;
-    const emailDiretor = document.getElementById('email-diretor').value;
 
     function gerarSenhaAleatoria(tamanho) {
         const caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
@@ -58,8 +57,6 @@ function clube(){
             alert('Defina a Região de seu clube!')
         }else if(clube === ''){
             alert('Defina o seu clube!')
-        }else if(emailDiretor === ''){
-            alert('Insira o seu email de diretor!')
         }else if(uniao_clube !== '0' && associacao_clube !== '' && regiao_clube !== '' && clube !== ''){
             JSON.stringify(localStorage.setItem('uniao', uniao_clube));
             JSON.stringify(localStorage.setItem('associacao', associacao_clube));
@@ -69,15 +66,13 @@ function clube(){
             JSON.stringify(localStorage.setItem('senha_diretor', senhaGerada));
             JSON.stringify(localStorage.setItem('click', "true"));
             alert(`Salve essa senha imediatamente: ${localStorage.getItem('senha_diretor')}`);
-            JSON.stringify(localStorage.setItem('email_diretor', emailDiretor));
 
             const dados = {
                 uniao_clube,
                 associacao_clube,
                 regiao_clube,
                 clube,
-                senha_diretor: senhaGerada,
-                email_diretor: emailDiretor
+                senha_diretor: senhaGerada
             };
 
             fetch('/adicionar', {
@@ -105,7 +100,7 @@ function clube(){
     }
 }
 
-function login(){
+function desbrava(){
     if(localStorage.getItem('possui', true)){
         window.location = '/app'
     }else{
